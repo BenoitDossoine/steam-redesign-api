@@ -51,6 +51,23 @@ app.get('/userGames', async(req,res)=>{
     }
 })
 
+// /game/?id=
+app.get('/game', async(req,res)=>{
+    let url = `https://store.steampowered.com/api/appdetails?appids=${req.query.id}`
+    try{
+        // fetch the data
+        let gameInfo = await fetch(url)
+            .then(response => response.json());
+        // send the data
+        res.status(200).json(gameInfo);
+    }catch(error){
+        console.log(error);
+        res.status(500).send('API call could not be made. Try again later!')
+    } finally{
+        console.log('call done');
+    }
+})
+
 app.listen(process.env.PORT || 5000, ()=>{
     console.log(`API is running`);
 })
