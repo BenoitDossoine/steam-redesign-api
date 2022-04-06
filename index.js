@@ -41,6 +41,7 @@ app.get('/userGames', async(req,res)=>{
         // send the data
         res.status(200).json(games);
     }catch(error){
+        console.log(error);
         res.status(500).send('API call could not be made. Try again later!')
     } finally{
         console.log('call done');
