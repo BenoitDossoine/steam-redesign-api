@@ -47,6 +47,6 @@ app.get('/userGames/', async(req,res)=>{
     }
 })
 
-app.listen(port, ()=>{
-    console.log(`API is running at port ${port}`);
+app.listen(process.env.PORT || 5000, ()=>{
+    console.log(`API is running`);
 })
