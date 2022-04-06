@@ -1,0 +1,28 @@
+{
+  "name": "steam-redesign-api",
+  "version": "1.0.0",
+  "description": "API to call the Steam API and pass it to the client",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BenoitDossoine/steam-redesign-api.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BenoitDossoine/steam-redesign-api/issues"
+  },
+  "homepage": "https://github.com/BenoitDossoine/steam-redesign-api#readme",
+  "dependencies": {
+    "body-parser": "^1.20.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3",
+    "node-fetch": "^3.2.3"
+  }
+}
