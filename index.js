@@ -3,15 +3,14 @@ const app = express();
 const port = 1337;
 
 import cors from 'cors';
-
 import fetch from 'node-fetch';
-
 import dotenv from 'dotenv/config';
+import bodyParser from 'body-parser';
 
-const key = process.env.KEY;
 
 app.use(express.static('public'));
 app.use(cors());
+app.use(bodyParser.json());
 
 app.get('/',(req,res)=>{
     res.status(300).redirect('./info.html');
