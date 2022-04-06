@@ -9,7 +9,6 @@ import fetch from 'node-fetch';
 import dotenv from 'dotenv/config';
 
 const key = process.env.KEY;
-console.log(key);
 
 app.use(express.static('public'));
 app.use(cors());
@@ -32,13 +31,14 @@ app.get('/allGames', async(req,res)=>{
     }
 })
 
-app.get('/userGames/', async(req,res)=>{
-    let url = `https://api.steampowered.com/IPlayerService/GetOwnedGames/v1/?steamid=76561198090377206&key=${key}`;
+app.get('/userGames', async(req,res)=>{
+    let url = `https://api.steampowered.com/IPlayerService/GetOwnedGames/v1/?steamid=76561198090377206&key=${process.env.KEY}`;
     
     try{
         // fetch the data
         let games = await fetch(url)
             .then(response => response.json());
+        // send the data
         res.status(200).json(games);
     }catch(error){
         res.status(500).send('API call could not be made. Try again later!')
