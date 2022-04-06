@@ -30,8 +30,12 @@ app.get('/allGames', async(req,res)=>{
     }
 })
 
+// /userGames/?id=
 app.get('/userGames', async(req,res)=>{
-    let url = `https://api.steampowered.com/IPlayerService/GetOwnedGames/v1/?steamid=76561198090377206&key=${process.env.KEY}`;
+    // make the url for the fetch call
+    // api key is secret and is saved on heroku
+    // steam id should be given as a parameter
+    let url = `https://api.steampowered.com/IPlayerService/GetOwnedGames/v1/?steamid=${req.query.id}&key=${process.env.KEY}`;
     
     try{
         // fetch the data
