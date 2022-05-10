@@ -68,6 +68,27 @@ app.get('/game', async(req,res)=>{
     }
 })
 
+app.get('/featuredGames', async(req,res)=>{
+    let featuredGamesIds = [1245620,1531540,860510,620];
+    let featuredGames = [];
+    try{
+        for(let id of featuredGamesIds){
+            let url = `https://store.steampowered.com/api/appdetails?appids=${id}`
+                // fetch the data
+                let gameInfo = await fetch(url)
+                    .then(response => response.json())
+                    .then(data=>featuredGames.push(data[`${id}`]["data"]));
+        }
+    }catch(error){
+        console.log(error);
+        res.status(500).send('API call could not be made. Try again later!')
+    } finally{
+        console.log(featuredGames);
+    }
+    
+    res.status(200).json(featuredGames);
+})
+
 app.listen(process.env.PORT || 5000, ()=>{
     console.log(`API is running`);
 })
