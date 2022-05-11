@@ -70,14 +70,16 @@ app.get('/game', async(req,res)=>{
 
 app.get('/featuredGames', async(req,res)=>{
     let featuredGamesIds = [1245620,1531540,860510,620];
-    let featuredGames = [];
+    let featuredGames = {
+        games: [],
+    };
     try{
         for(let id of featuredGamesIds){
             let url = `https://store.steampowered.com/api/appdetails?appids=${id}`
                 // fetch the data
                 let gameInfo = await fetch(url)
                     .then(response => response.json())
-                    .then(data=>featuredGames.push(data[`${id}`]["data"]));
+                    .then(data=>featuredGames.games.push(data[`${id}`]["data"]));
         }
     }catch(error){
         console.log(error);
