@@ -91,6 +91,22 @@ app.get('/featuredGames', async(req,res)=>{
     res.status(200).json(featuredGames);
 })
 
+app.get('/gamesByGenre', async(req,res)=>{
+    let url = `https://api.rawg.io/api/games?key=${process.env.RAWGKEY}&genre=adventure`
+    try{
+        // fetch the data
+        let games = await fetch(url)
+            .then(response => response.json());
+        // send the data
+        res.status(200).json(games);
+    }catch(error){
+        console.log(error);
+        res.status(500).send('API call could not be made. Try again later!')
+    } finally{
+        console.log('call done');
+    }
+})
+
 app.listen(process.env.PORT || 5000, ()=>{
     console.log(`API is running`);
 })
